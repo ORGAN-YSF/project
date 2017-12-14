@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sysmgr?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    minIdle: 2
+    maxActive: 5
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+
+server:
+  port: 8801
