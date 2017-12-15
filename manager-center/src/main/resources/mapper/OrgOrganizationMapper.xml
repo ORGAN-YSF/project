@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ysf.dao.OrgOrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.ysf.po.OrgOrganization" >
+    <id column="auto_id" property="autoId" jdbcType="BIGINT" />
+    <result column="auto_code" property="autoCode" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_uid" property="createUid" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_uid" property="updateUid" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    auto_id, auto_code, parent_id, title, alias, create_time, create_uid, update_time, 
+    update_uid
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_org_organization
+    where auto_id = #{autoId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectOrgListPage" resultMap="BaseResultMap"> 
+  	select <include refid="Base_Column_List" /> from sys_org_organization 
+  	<where>
+  		<if test="orgName != null and orgName != ''">
+  			TITLE = #{orgName,jdbcType=VARCHAR}
+  		</if>
+  	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_org_organization
+    where auto_id = #{autoId,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ysf.po.OrgOrganization" >
+    insert into sys_org_organization (auto_id, auto_code, parent_id, 
+      title, alias, create_time, 
+      create_uid, update_time, update_uid
+      )
+    values (#{autoId,jdbcType=BIGINT}, #{autoCode,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUid,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysf.po.OrgOrganization" >
+    insert into sys_org_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="autoId != null" >
+        auto_id,
+      </if>
+      <if test="autoCode != null" >
+        auto_code,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUid != null" >
+        create_uid,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUid != null" >
+        update_uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="autoId != null" >
+        #{autoId,jdbcType=BIGINT},
+      </if>
+      <if test="autoCode != null" >
+        #{autoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUid != null" >
+        #{createUid,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUid != null" >
+        #{updateUid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysf.po.OrgOrganization" >
+    update sys_org_organization
+    <set >
+      <if test="autoCode != null" >
+        auto_code = #{autoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUid != null" >
+        create_uid = #{createUid,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUid != null" >
+        update_uid = #{updateUid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where auto_id = #{autoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysf.po.OrgOrganization" >
+    update sys_org_organization
+    set auto_code = #{autoCode,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_uid = #{createUid,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_uid = #{updateUid,jdbcType=BIGINT}
+    where auto_id = #{autoId,jdbcType=BIGINT}
+  </update>
+</mapper>

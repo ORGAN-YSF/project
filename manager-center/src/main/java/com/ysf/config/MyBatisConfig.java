@@ -3,6 +3,7 @@ package com.ysf.config;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.ysf.common.page.PaginationInterceptor;
 
 @Configuration
 @EnableTransactionManagement	//开启注解事务
@@ -29,15 +31,14 @@ public class MyBatisConfig {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(xmlPath));
 		sqlSessionFactoryBean.setConfigurationProperties(properties());
-		//设置分页插件，日后补充
-		//sqlSessionFactoryBean.setPlugins(new Interceptor[]{paginationInterceptor()});
+		sqlSessionFactoryBean.setPlugins(new Interceptor[]{paginationInterceptor()});
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	/*@Bean
+	@Bean
 	public PaginationInterceptor paginationInterceptor() {
 		return new PaginationInterceptor();
-	}*/
+	}
 
 	@Bean
 	public Properties properties() {

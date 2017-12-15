@@ -179,5 +179,17 @@
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 		</dependency>
+		
+		<!-- 项目依赖包 -->
+		<dependency>
+			<groupId>com.ysf</groupId>
+			<artifactId>manager-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ysf</groupId>
+			<artifactId>base</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>
