@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ysf</groupId>
-  <artifactId>project</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>com.ysf</groupId>
+	<artifactId>project</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <distributionManagement>
-    <site>
-      <id>website</id>
-      <url>scp://webhost.company.com/www/website</url>
-    </site>
-  </distributionManagement>
-  
-  <modules>
-    <module>manager-api</module>
-    <module>manager-center</module>
-    <module>base</module>
-  </modules>
-  
-  <properties>
+	<distributionManagement>
+		<site>
+			<id>website</id>
+			<url>scp://webhost.company.com/www/website</url>
+		</site>
+	</distributionManagement>
+
+	<modules>
+		<module>manager-api</module>
+		<module>manager-center</module>
+		<module>base</module>
+	</modules>
+
+	<properties>
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
@@ -39,8 +40,8 @@
 		<springboot.version>1.4.3.RELEASE</springboot.version>
 		<springboot.spring.framework.version>4.3.5.RELEASE</springboot.spring.framework.version>
 	</properties>
-	
-		<dependencyManagement>
+
+	<dependencyManagement>
 		<dependencies>
 			<!-- 文件上传依赖包 -->
 			<dependency>
@@ -48,21 +49,21 @@
 				<artifactId>commons-fileupload</artifactId>
 				<version>1.2</version>
 			</dependency>
-			
+
 			<!-- xml解析依赖包 -->
 			<dependency>
 				<groupId>dom4j</groupId>
 				<artifactId>dom4j</artifactId>
 				<version>1.6.1</version>
 			</dependency>
-			
-			
+
+
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache-core</artifactId>
 				<version>2.5.0</version>
 			</dependency>
-			
+
 			<!-- zookeeper依赖包 -->
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
@@ -75,7 +76,7 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.github.sgroschupf</groupId>
 				<artifactId>zkclient</artifactId>
@@ -257,17 +258,16 @@
 				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
-			<!-- TODO
-			<dependency>-->
-				<!--<groupId>org.slf4j</groupId>-->
-				<!--<artifactId>slf4j-log4j12</artifactId>-->
-				<!--<version>${slf4j.version}</version>-->
-			<!--</dependency>-->
-			<!--<dependency>-->
-				<!--<groupId>org.slf4j</groupId>-->
-				<!--<artifactId>jcl-over-slf4j</artifactId>-->
-				<!--<version>${slf4j.version}</version>-->
-			<!--</dependency>-->
+			<!-- TODO <dependency> -->
+			<!--<groupId>org.slf4j</groupId> -->
+			<!--<artifactId>slf4j-log4j12</artifactId> -->
+			<!--<version>${slf4j.version}</version> -->
+			<!--</dependency> -->
+			<!--<dependency> -->
+			<!--<groupId>org.slf4j</groupId> -->
+			<!--<artifactId>jcl-over-slf4j</artifactId> -->
+			<!--<version>${slf4j.version}</version> -->
+			<!--</dependency> -->
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
@@ -429,9 +429,9 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-			    <groupId>commons-beanutils</groupId>
-			    <artifactId>commons-beanutils</artifactId>
-			    <version>1.9.3</version>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.9.3</version>
 			</dependency>
 
 			<dependency>
@@ -451,14 +451,14 @@
 				<version>3.10-FINAL</version>
 			</dependency>
 			<dependency>
-			    <groupId>org.apache.poi</groupId>
-			    <artifactId>poi-ooxml-schemas</artifactId>
-			    <version>3.10-FINAL</version>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml-schemas</artifactId>
+				<version>3.10-FINAL</version>
 			</dependency>
 			<dependency>
-			    <groupId>org.freemarker</groupId>
-			    <artifactId>freemarker</artifactId>
-			    <version>2.3.20</version>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.20</version>
 			</dependency>
 			<!-- tddl-seq -->
 			<dependency>
@@ -478,19 +478,32 @@
 				<artifactId>guava</artifactId>
 				<version>16.0.1</version>
 			</dependency>
-			
+
 			<!-- OBS依赖包 -->
 			<dependency>
-	    		<groupId>com.jamesmurty.utils</groupId>
-	    		<artifactId>java-xmlbuilder</artifactId>
-	    		<version>0.4</version>
+				<groupId>com.jamesmurty.utils</groupId>
+				<artifactId>java-xmlbuilder</artifactId>
+				<version>0.4</version>
 			</dependency>
 
-			<!--Hibernate validator-->
+			<!--Hibernate validator -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
 				<version>5.4.0.Final</version>
+			</dependency>
+			
+			<!-- 模板引擎 -->
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-engine-core</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<!-- MP核心库 -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>2.1.7</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

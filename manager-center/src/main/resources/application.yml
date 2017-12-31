@@ -43,3 +43,9 @@ spring:
 
 server:
   port: 8801
+  
+logging:
+  level.root: info
+  level.com.ysf: debug
+  path: logs/
+  file: ysf.log
