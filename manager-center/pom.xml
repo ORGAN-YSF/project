@@ -9,8 +9,8 @@
 		<version>${project.version}</version>
 	</parent>
 	<artifactId>manager-center</artifactId>
-	<packaging>war</packaging>
-
+	<packaging>jar</packaging>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
