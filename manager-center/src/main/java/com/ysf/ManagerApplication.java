@@ -11,6 +11,6 @@ public class ManagerApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ManagerApplication.class, args);
-		log.debug("系统启动成功");
+		log.debug("系统启动成功");	
 	}
 }
