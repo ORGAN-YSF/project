@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import com.ysf.annotation.BusinessLog;
 import com.ysf.common.constant.dictmap.AbstractDictMap;
+import com.ysf.factory.LogTaskFactory;
 import com.ysf.util.Contrast;
 import com.ysf.util.HttpUtil;
 
@@ -38,6 +39,8 @@ public class LogAop {
 	}
 
 	private void handle(ProceedingJoinPoint point) throws Exception {
+		//后期补充使用shiro获取当前用户信息
+		
 		//签名
 		Signature sig = point.getSignature();
 		MethodSignature msig = null;
@@ -54,7 +57,6 @@ public class LogAop {
 		
 		//获取拦截方法的参数和类名
 		String className = target.getClass().getName();
-		Object[] params = point.getArgs();
 		
 		BusinessLog annotation = currentMethod.getAnnotation(BusinessLog.class);
 		String businessName = annotation.value();
@@ -62,10 +64,10 @@ public class LogAop {
 		Class<? extends AbstractDictMap> dictClass = annotation.dict();
 		
 		Map<String, String> parameters = HttpUtil.getRequestParameters();
-        AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-        
+        AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();        
         String msg = Contrast.parseMutiKey(dictMap,key,parameters);
-        
+
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(null,businessName,className,methodName,msg));
 	}
 }
 

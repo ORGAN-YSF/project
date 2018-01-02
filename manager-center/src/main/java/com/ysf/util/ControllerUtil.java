@@ -2,6 +2,9 @@ package com.ysf.util;
 
 import com.alibaba.fastjson.serializer.ValueFilter;
 
+/**
+ * 控制层工具类
+ */
 public class ControllerUtil {
 	public static ValueFilter valueFilter = new ValueFilter() {
 		@Override

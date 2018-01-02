@@ -22,4 +22,6 @@ public interface OrgOrganizationMapper {
     int updateByPrimaryKey(OrgOrganization record);
 
 	List<OrgOrganization> selectOrgListPage(String orgName, Page<OrgOrganization> page);
+	
+	OrgOrganization selectByParentId(Long parentId);
 }

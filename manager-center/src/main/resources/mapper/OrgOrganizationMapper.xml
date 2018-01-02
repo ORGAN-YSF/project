@@ -26,6 +26,11 @@
     where auto_id = #{autoId,jdbcType=BIGINT}
   </select>
   
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  	select <include refid="Base_Column_List"/> from sys_org_organization 
+  	where parent_id = #{parentId,jdbcType=BIGINT}
+  </select>
+  
   <select id="selectOrgListPage" resultMap="BaseResultMap"> 
   	select <include refid="Base_Column_List" /> from sys_org_organization 
   	<where>
