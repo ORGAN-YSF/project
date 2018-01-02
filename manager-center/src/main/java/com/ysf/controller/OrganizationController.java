@@ -1,5 +1,6 @@
 package com.ysf.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.ysf.annotation.BusinessLog;
 import com.ysf.bo.OrganizationReqBO;
+import com.ysf.bo.OrganizationSaveReqBO;
 import com.ysf.bo.RspOrganizationBO;
+import com.ysf.common.bo.RspInfoBO;
 import com.ysf.common.bo.RspPageBO;
+import com.ysf.common.constant.dictmap.OrganizationDict;
 import com.ysf.service.OrganizationService;
 import com.ysf.util.ControllerUtil;
 
@@ -24,6 +29,9 @@ public class OrganizationController {
 	@Autowired 
 	private OrganizationService organizationService;
 	
+	/**
+	 * 根据条件查询部门信息
+	 */
 	@RequestMapping(value="/service/routing/qryOrganization",method = {RequestMethod.GET,RequestMethod.POST})
 	public JSONObject qryOrganization(HttpServletRequest request) {
 		String orgName = request.getParameter("orgName");
@@ -34,12 +42,10 @@ public class OrganizationController {
 		orgReqBO.setOrgName(orgName);
 		orgReqBO.setPageNo(Integer.valueOf(pageNo));
 		orgReqBO.setPageSize(Integer.valueOf(pageSize));
-		RspPageBO<RspOrganizationBO> rspPage = 
-				organizationService.selectOrganizationListPage(orgReqBO);
+		RspPageBO<RspOrganizationBO> rspPage = organizationService.selectOrganizationListPage(orgReqBO);
 		
 		return this.getData(rspPage);
 	}
-
 	private JSONObject getData(RspPageBO<RspOrganizationBO> rsp) {
 		JSONObject jsonObject = new JSONObject();
 		
@@ -58,5 +64,37 @@ public class OrganizationController {
 		jsonObject.put("data",dataJson);
 		
 		return jsonObject;
+	}
+
+	/**
+	 * 添加组织机构
+	 */
+	@RequestMapping(value="/service/routing/addOrganization",method = {RequestMethod.GET,RequestMethod.POST})
+	@BusinessLog(value="添加组织机构",key="autoCode",dict = OrganizationDict.class)
+	public JSONObject addOrganization(HttpServletRequest request) {
+		OrganizationSaveReqBO organizationSaveReqBO = getOrganizationSaveReqBO(request);
+		
+		RspInfoBO rsp = organizationService.insertOrganization(organizationSaveReqBO);
+		return this.getData(rsp);
+	}
+	private OrganizationSaveReqBO getOrganizationSaveReqBO(HttpServletRequest request) {
+		String autoCode = request.getParameter("autoCode");
+		String parentId = request.getParameter("parentId");
+		String title = request.getParameter("title");
+		String alias = request.getParameter("alias");
+		
+		OrganizationSaveReqBO organizationSaveReqBO = new OrganizationSaveReqBO();
+		organizationSaveReqBO.setAutoCode(autoCode);
+		organizationSaveReqBO.setParentId(Long.valueOf(parentId));
+		organizationSaveReqBO.setTitle(title);
+		organizationSaveReqBO.setAlias(alias);
+		organizationSaveReqBO.setCreateTime(new Date());
+		return organizationSaveReqBO;
+	}
+	private JSONObject getData(RspInfoBO rsp) {
+		JSONObject result = new JSONObject();
+		result.put("respCode", rsp.getRespCode());
+		result.put("respDesc", rsp.getRespDesc());
+		return result;
 	}
 }

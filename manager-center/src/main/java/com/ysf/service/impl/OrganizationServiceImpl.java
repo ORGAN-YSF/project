@@ -7,7 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ysf.bo.OrganizationReqBO;
+import com.ysf.bo.OrganizationSaveReqBO;
 import com.ysf.bo.RspOrganizationBO;
+import com.ysf.common.bo.RspInfoBO;
 import com.ysf.common.bo.RspPageBO;
 import com.ysf.common.constant.BaseRspConstants;
 import com.ysf.common.page.Page;
@@ -21,6 +23,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 	@Autowired 
 	private OrgOrganizationMapper orgOrganizationMapper;
 	
+	/**
+	 * 分页查询组织机构
+	 */
 	@Override
 	public RspPageBO<RspOrganizationBO> selectOrganizationListPage(OrganizationReqBO orgReqBO) {
 		Page<OrgOrganization> page = new Page<>(orgReqBO.getPageNo(), orgReqBO.getPageSize());
@@ -47,7 +52,18 @@ public class OrganizationServiceImpl implements OrganizationService {
 		resultPage.setRespCode(BaseRspConstants.RSP_SUCCESS_CODE);
 		resultPage.setRespDesc("查询分页组织机构成功！");
 		resultPage.setRows(rows);
-		
 		return resultPage;
+	}
+	
+	/**
+	 * 添加组织机构
+	 */
+	@Override
+	public RspInfoBO insertOrganization(OrganizationSaveReqBO organizationSaveReqBO) {
+		OrgOrganization record = new OrgOrganization();
+		BeanUtils.copyProperties(organizationSaveReqBO, record);
+		orgOrganizationMapper.insert(record);
+		RspInfoBO rsp = new RspInfoBO();
+		return rsp;
 	}
 }

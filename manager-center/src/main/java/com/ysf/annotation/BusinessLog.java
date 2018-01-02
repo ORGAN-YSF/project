@@ -5,7 +5,9 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import com.ysf.common.constant.AbstractDictMap;
+import com.ysf.common.constant.dictmap.AbstractDictMap;
+import com.ysf.common.constant.dictmap.SystemDict;
+
 /**
  * 添加业务日志注解
  */
@@ -26,5 +28,5 @@ public @interface BusinessLog {
     /**
      * 字典(用于查找key的中文名称和字段的中文名称)
      */
-    Class<? extends AbstractDictMap> dict();
+    Class<? extends AbstractDictMap> dict() default SystemDict.class;
 }

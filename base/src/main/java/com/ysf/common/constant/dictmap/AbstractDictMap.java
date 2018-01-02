@@ -1,4 +1,4 @@
-package com.ysf.common.constant;
+package com.ysf.common.constant.dictmap;
 
 import java.util.HashMap;
 
