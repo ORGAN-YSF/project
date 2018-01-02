@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -25,6 +26,7 @@ public class LogAop {
 	public void cutService(){
 	}
 	
+	@Around("cutService()")
 	public Object recordSysLog(ProceedingJoinPoint point) throws Throwable {
 		//先执行业务
 		Object result = point.proceed();
