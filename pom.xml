@@ -39,6 +39,7 @@
 		<com.github.sgroschupf.zkclient.version>0.1</com.github.sgroschupf.zkclient.version>
 		<springboot.version>1.4.3.RELEASE</springboot.version>
 		<springboot.spring.framework.version>4.3.5.RELEASE</springboot.spring.framework.version>
+		<swagger.version>2.2.2</swagger.version>
 	</properties>
 
 	<dependencyManagement>
@@ -492,6 +493,7 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>5.4.0.Final</version>
 			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 </project>
