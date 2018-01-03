@@ -3,6 +3,7 @@ package com.ysf.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.ysf.common.page.Page;
 import com.ysf.po.OrgOrganization;
@@ -21,7 +22,7 @@ public interface OrgOrganizationMapper {
 
     int updateByPrimaryKey(OrgOrganization record);
 
-	List<OrgOrganization> selectOrgListPage(String orgName, Page<OrgOrganization> page);
+	List<OrgOrganization> selectOrgListPage(@Param("orgName")String orgName,Page<OrgOrganization> page);
 	
 	OrgOrganization selectByParentId(Long parentId);
 }

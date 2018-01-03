@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
@@ -24,6 +25,10 @@ import com.ysf.common.constant.dictmap.OrganizationDict;
 import com.ysf.service.OrganizationService;
 import com.ysf.util.ControllerUtil;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class OrganizationController {
 	@Autowired 
@@ -32,8 +37,15 @@ public class OrganizationController {
 	/**
 	 * 根据条件查询部门信息
 	 */
+	@ApiOperation(value="查询部门信息",notes="查询部门信息",tags={"tag"},response=JSONObject.class)
+	@ApiImplicitParams(value={
+		@ApiImplicitParam(name="orgName",value="组织机构名称",required=false,dataType="String",paramType="query"),
+		@ApiImplicitParam(name="pageNo",value="当前页码",required=true,dataType="String",paramType="query"),
+		@ApiImplicitParam(name="pageSize",value="每页显示数量",required=true,dataType="String",paramType="query")
+	})
 	@RequestMapping(value="/service/routing/qryOrganization",method = {RequestMethod.GET,RequestMethod.POST})
 	public JSONObject qryOrganization(HttpServletRequest request) {
+		
 		String orgName = request.getParameter("orgName");
 		String pageNo = request.getParameter("pageNo");
 		String pageSize = request.getParameter("pageSize");

@@ -1,0 +1,19 @@
+集成swagger
+1.增加maven依赖springfox-swagger2,springfox-swagger-ui,配置swagger,设置静态资源映射，在启动类中添加
+2.使用注解@ApiOperation, @ApiImplicitParams, @ApiImplicitParam
+@ApiOperation：用在方法上，说明方法的作用
+@ApiImplicitParams：用在方法上包含一组参数说明
+@ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
+paramType：参数放在哪个地方
+header-->请求参数的获取：@RequestHeader
+query-->请求参数的获取：@RequestParam
+path（用于restful接口）-->请求参数的获取：@PathVariable
+body（@RequestBody）
+form（表单提交）
+name：参数名
+dataType：参数类型
+required：参数是否必须传
+value：参数的意思
+defaultValue：参数的默认值
+
+
