@@ -40,6 +40,8 @@
 		<springboot.version>1.4.3.RELEASE</springboot.version>
 		<springboot.spring.framework.version>4.3.5.RELEASE</springboot.spring.framework.version>
 		<swagger.version>2.2.2</swagger.version>
+		<shiro.version>1.4.0</shiro.version>
+		<ehcache.version>3.3.1</ehcache.version>
 	</properties>
 
 	<dependencyManagement>
@@ -493,7 +495,28 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>5.4.0.Final</version>
 			</dependency>
-			
+
+			<!--shiro依赖 -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-core</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-ehcache</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>
