@@ -28,6 +28,12 @@
     from user
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
+  
+  <select id="selectByUserName" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"/> from user 
+  	where account = #{userName,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
