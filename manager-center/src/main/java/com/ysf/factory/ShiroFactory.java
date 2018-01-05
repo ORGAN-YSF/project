@@ -28,7 +28,7 @@ import com.ysf.po.User;
 @Transactional(readOnly=true)
 public class ShiroFactory implements IShiroFactory {
 	
-	public static IConstantFactory me() {
+	public static IShiroFactory me() {
         return SpringContextHolder.getBean("shiroFactory");
     }
 	
