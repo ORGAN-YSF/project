@@ -1,5 +1,7 @@
 package com.ysf.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ysf.po.Role;
@@ -17,4 +19,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+	List<String> selectByRoleIds(List<Long> list);
 }

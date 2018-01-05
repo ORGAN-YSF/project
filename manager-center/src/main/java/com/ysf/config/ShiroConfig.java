@@ -2,7 +2,6 @@ package com.ysf.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -22,7 +21,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import com.ysf.config.properties.YsfProperties;
 import com.ysf.realm.ShiroDbRealm;
 
@@ -77,15 +75,15 @@ public class ShiroConfig {
 		return cookie;
 	}
 	
-	/**
-	 * 缓存管理器
-	 */
-	@Bean
-	public CacheManager cacheManager(EhCacheManagerFactoryBean ehcache) {
-		EhCacheManager cacheManager = new EhCacheManager();
-		cacheManager.setCacheManager(ehcache.getObject());
-		return cacheManager;
-	}
+    /**
+     * 缓存管理器 使用Ehcache实现
+     */
+    @Bean
+    public CacheManager getCacheShiroManager(EhCacheManagerFactoryBean ehcache) {
+        EhCacheManager ehCacheManager = new EhCacheManager();
+        ehCacheManager.setCacheManager(ehcache.getObject());
+        return ehCacheManager;
+    }
 	
 	/**
 	 * spring session管理器（多机环境）

@@ -29,6 +29,8 @@ spring:
       exclude: static/**,WEB-INF/view/**
   aop:
     proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
+  session:
+    store-type: none
 ---
 
 spring:

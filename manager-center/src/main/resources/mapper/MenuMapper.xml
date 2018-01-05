@@ -26,6 +26,13 @@
     from menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </select>
+  
+  <select id="selectUrlsByRoleId" resultType="java.lang.String">
+  	select url from menu 
+  	inner join relation on menu.menu_id = relation.menu_id
+  	where relation.role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from menu
     where menu_id = #{menuId,jdbcType=BIGINT}
