@@ -20,6 +20,12 @@
     from dept
     where dept_id = #{deptId,jdbcType=BIGINT}
   </select>
+  
+  <select id="selectSubDeptId" resultType="java.lang.Long">
+  	select dept_id from dept 
+  	where pid = #{deptId,jdbcType=BIGINT}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from dept
     where dept_id = #{deptId,jdbcType=BIGINT}

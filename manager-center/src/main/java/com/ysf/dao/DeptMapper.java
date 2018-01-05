@@ -1,5 +1,7 @@
 package com.ysf.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ysf.po.Dept;
@@ -17,4 +19,6 @@ public interface DeptMapper {
     int updateByPrimaryKeySelective(Dept record);
 
     int updateByPrimaryKey(Dept record);
+
+	List<Long> selectSubDeptId(Long deptId);
 }

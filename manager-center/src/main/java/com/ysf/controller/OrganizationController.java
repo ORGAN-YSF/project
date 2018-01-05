@@ -80,6 +80,7 @@ public class OrganizationController {
 	/**
 	 * 添加组织机构
 	 */
+	//@RequiresPermissions("/mgr/role_assign")  //利用shiro自带的权限检查
 	@RequestMapping(value="/service/routing/addOrganization",method = {RequestMethod.GET,RequestMethod.POST})
 	@BusinessLog(value="添加组织机构",key="autoCode",dict = OrganizationDict.class)
 	public JSONObject addOrganization(HttpServletRequest request) {

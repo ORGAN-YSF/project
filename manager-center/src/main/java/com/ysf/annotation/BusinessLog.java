@@ -9,7 +9,7 @@ import com.ysf.common.constant.dictmap.AbstractDictMap;
 import com.ysf.common.constant.dictmap.SystemDict;
 
 /**
- * 添加业务日志注解
+ * 业务日志注解
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)

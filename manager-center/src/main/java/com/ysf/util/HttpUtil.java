@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+/**
+ * http工具类
+ * @author sunwenxing
+ */
 public class HttpUtil {
 	/**
      * 获取HttpServletRequest
