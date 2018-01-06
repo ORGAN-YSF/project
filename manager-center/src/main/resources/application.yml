@@ -1,0 +1,59 @@
+ysf:
+  swagger-open: true
+  kaptcha-open: false
+  session-open: false
+  muti-datasource-open: false
+  spring-session-open: false
+  session-invalidate-time: 1800
+  session-validation-interval: 900  
+########################spring配置#############################
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+  http:
+    converters:
+      preferred-json-mapper: fastjson
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB   
+  devtools:
+    restart:
+      enabled: false 
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
+  aop:
+    proxy-target-class: true
+  session:
+    store-type: none
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sysmgr?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    minIdle: 2
+    maxActive: 5
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: log4j,wall,mergeStat
+
+server:
+  port: 8801
+  
+logging:
+  level.root: info
+  level.com.ysf: debug
+  path: logs/
+  file: ysf.log

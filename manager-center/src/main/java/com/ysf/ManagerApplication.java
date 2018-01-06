@@ -25,6 +25,8 @@ public class ManagerApplication extends WebMvcConfigurerAdapter {
 		}
 	}
 	
+    
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ManagerApplication.class, args);
 		log.debug("系统启动成功");	
