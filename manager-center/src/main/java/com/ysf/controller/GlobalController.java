@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GlobalController implements ErrorController {
 	public String getErrorPath() {
-		return "/404.html";
+		return "/404";
 	}
 	
 	@RequestMapping("/error")
