@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ysf.common.bo.UserInfo;
+import com.ysf.factory.LogTaskFactory;
+import com.ysf.log.LogManager;
+import com.ysf.util.HttpUtil;
 import com.ysf.util.ShiroUtil;
 
 @Controller
@@ -30,12 +34,17 @@ public class LoginController {
 		String password = request.getParameter("password");
 		String rememberMe = request.getParameter("rememberMe");
 		
-		Subject subject = ShiroUtil.getSubject();
+		Subject currentUser = ShiroUtil.getSubject();
 		
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
 		if("on".equals(rememberMe)) {
 			token.setRememberMe(true);
 		}
+		UserInfo userInfo = ShiroUtil.getUserInfo();
+		
+		currentUser.login(token);
+	
+		LogManager.me().executeLog(LogTaskFactory.loginLog(userInfo.getUserId(),HttpUtil.getIp()));
 		
 		return null;
 	}

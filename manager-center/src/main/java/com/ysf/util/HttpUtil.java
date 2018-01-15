@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -36,4 +37,8 @@ public class HttpUtil {
         }
         return values;
     }
+
+	public static String getIp() {
+		return getRequest().getRemoteHost();
+	}
 }

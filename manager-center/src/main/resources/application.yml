@@ -11,10 +11,10 @@ spring:
   profiles:
     active: dev
   mvc:
-    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
   http:
-    converters:
-      preferred-json-mapper: fastjson
     multipart:
       max-request-size: 100MB
       max-file-size: 100MB   

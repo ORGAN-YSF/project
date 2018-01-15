@@ -12,10 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import com.ysf.annotation.BusinessLog;
+import com.ysf.common.bo.UserInfo;
 import com.ysf.common.constant.dictmap.AbstractDictMap;
 import com.ysf.factory.LogTaskFactory;
 import com.ysf.util.Contrast;
 import com.ysf.util.HttpUtil;
+import com.ysf.util.ShiroUtil;
 
 @Aspect
 @Component
@@ -42,6 +44,10 @@ public class LogAop {
 
 	private void handle(ProceedingJoinPoint point) throws Exception {
 		//后期补充使用shiro获取当前用户信息
+		UserInfo userInfo = ShiroUtil.getUserInfo();
+		if(userInfo == null) {
+			return;
+		}
 		
 		//签名
 		Signature sig = point.getSignature();
@@ -69,7 +75,7 @@ public class LogAop {
         AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();        
         String msg = Contrast.parseMutiKey(dictMap,key,parameters);
 
-        LogManager.me().executeLog(LogTaskFactory.bussinessLog(null,businessName,className,methodName,msg));
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(userInfo.getUserId(),businessName,className,methodName,msg));
 	}
 }
 

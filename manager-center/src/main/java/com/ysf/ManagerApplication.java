@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.ysf.config.properties.YsfProperties;
 
 @SpringBootApplication
-public class ManagerApplication extends WebMvcConfigurerAdapter {
+public class ManagerApplication extends WebMvcConfigurerAdapter{
 	private static Logger log = LoggerFactory.getLogger(ManagerApplication.class);
 	
 	@Autowired
@@ -24,8 +24,6 @@ public class ManagerApplication extends WebMvcConfigurerAdapter {
 			registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 		}
 	}
-	
-    
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ManagerApplication.class, args);
