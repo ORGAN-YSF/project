@@ -17,6 +17,26 @@ public class LogTaskFactory {
 	private static OperationLogMapper operationLogMapper = SpringContextHolder.getBean(OperationLogMapper.class);
 	private static LoginLogMapper loginLogMapper = SpringContextHolder.getBean(LoginLogMapper.class);
 	
+	public static TimerTask exitLog(final Long userId,final String ip) {
+		return new TimerTask() {
+			@Override
+			public void run() {
+				LoginLog loginLog = new LoginLog();
+				loginLog.setCreateTime(new Date());
+				loginLog.setIp(ip);
+				loginLog.setLogname(ConstantEnum.LogType.EXIT.getMessage());
+				loginLog.setMessage(BaseRspConstants.RSP_SUCCESS_DESC);
+				loginLog.setSucceed(BaseRspConstants.RSP_SUCCESS_DESC);
+				loginLog.setUserid(userId);
+				try {
+					loginLogMapper.insert(loginLog);
+				} catch (Exception e) {
+					logger.error("创建登出日志异常!",e);
+				}
+			}
+		};
+	}
+	
 	public static TimerTask loginLog(final Long userId,final String ip) {
 		return new TimerTask() {
 			@Override

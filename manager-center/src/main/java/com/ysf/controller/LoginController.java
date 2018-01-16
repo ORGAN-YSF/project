@@ -22,9 +22,9 @@ public class LoginController {
 	@RequestMapping(value = "/login",method = RequestMethod.GET) 
 	public String login() {
         if (ShiroUtil.isAuthenticated() || ShiroUtil.getUserInfo() != null) {
-        	return REDIRECT + "/index";
+        	return REDIRECT + "/index.jsp";
         } else {
-            return "/login";
+            return "/login.jsp";
         }
 	}
 	
@@ -41,11 +41,18 @@ public class LoginController {
 			token.setRememberMe(true);
 		}
 		UserInfo userInfo = ShiroUtil.getUserInfo();
-		
 		currentUser.login(token);
-	
 		LogManager.me().executeLog(LogTaskFactory.loginLog(userInfo.getUserId(),HttpUtil.getIp()));
+		request.getSession().setAttribute("userInfo", userInfo);
+		request.getSession().setAttribute("userName", userInfo.getAccount());
 		
-		return null;
+		return REDIRECT + "/index.jsp";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout() {
+		LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroUtil.getUserInfo().getUserId(),HttpUtil.getIp()));
+		ShiroUtil.getSubject().logout();
+		return REDIRECT + "/login.jsp";
 	}
 }

@@ -13,7 +13,6 @@ spring:
   mvc:
     view:
       prefix: /WEB-INF/
-      suffix: .jsp
   http:
     multipart:
       max-request-size: 100MB
