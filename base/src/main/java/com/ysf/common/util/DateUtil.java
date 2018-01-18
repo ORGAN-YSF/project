@@ -24,6 +24,9 @@ public class DateUtil {
 	}
 	
 	public static Date StringLongToDate(String dateStr) throws ParseException {
+		if(dateStr == null) {
+			return null;
+		}
 		Date date = yearMonthDayHourMinuteSecond.parse(dateStr);
 		return date;
 	}
