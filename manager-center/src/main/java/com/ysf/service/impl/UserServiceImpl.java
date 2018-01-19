@@ -2,6 +2,7 @@ package com.ysf.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ysf.bo.SaveUserReqBO;
 import com.ysf.common.bo.RspInfoBO;
@@ -14,6 +15,7 @@ import com.ysf.service.UserService;
  * 用户服务实现类
  * @author sunwenxing
  */
+@Service
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;

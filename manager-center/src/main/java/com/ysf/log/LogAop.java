@@ -43,7 +43,6 @@ public class LogAop {
 	}
 
 	private void handle(ProceedingJoinPoint point) throws Exception {
-		//后期补充使用shiro获取当前用户信息
 		UserInfo userInfo = ShiroUtil.getUserInfo();
 		if(userInfo == null) {
 			return;
