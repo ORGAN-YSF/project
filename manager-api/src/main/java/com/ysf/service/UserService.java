@@ -1,6 +1,7 @@
 package com.ysf.service;
 
 import com.ysf.bo.SaveUserReqBO;
+import com.ysf.bo.UserRspBO;
 import com.ysf.common.bo.RspInfoBO;
 
 /**
@@ -12,4 +13,6 @@ public interface UserService {
 	 * 添加用户
 	 */
 	RspInfoBO addUser(SaveUserReqBO saveUserReqBO);
+	
+	UserRspBO selectUserById(Long userId);
 }
