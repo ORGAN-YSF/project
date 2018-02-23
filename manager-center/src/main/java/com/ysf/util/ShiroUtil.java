@@ -41,15 +41,13 @@ public class ShiroUtil {
 
 	//获取完整用户
 	public static UserInfo getUserInfo() {
-		if(isGuest()){
-			return null;
-		}else{
+		boolean userFlag = isUser();
+		if(userFlag) {
 			return (UserInfo) getSubject().getPrincipals().getPrimaryPrincipal();
 		}
+		return null;
 	}
-	public static boolean isGuest() {
-		return !isUser();
-	}
+	
 	public static boolean isUser() {
 		return getSubject() != null && getSubject().getPrincipal() != null;
 	}

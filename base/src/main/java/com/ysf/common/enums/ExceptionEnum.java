@@ -5,7 +5,8 @@ public enum ExceptionEnum {
 	NO_PERMITION(405, "权限异常"),
 	BUSINESS_ERROR(200,"业务异常"),
 	USER_OR_PASSWORD_ERROR(201,"账号密码错误"),
-	SERVER_ERROR(500, "服务器异常");
+	SERVER_ERROR(500, "服务器异常"),
+	SIGN_ERROR(700,"签名校验失败");
 	
 	private Integer code;
 	private String message;

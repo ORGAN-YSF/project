@@ -36,13 +36,17 @@ public class LoginController {
 		
 		Subject currentUser = ShiroUtil.getSubject();
 		
-		UsernamePasswordToken token = new UsernamePasswordToken(username, password); 
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
 		if("on".equals(rememberMe)) {
 			token.setRememberMe(true);
 		}
-		UserInfo userInfo = ShiroUtil.getUserInfo();
+		
 		currentUser.login(token);
-		LogManager.me().executeLog(LogTaskFactory.loginLog(userInfo.getUserId(),HttpUtil.getIp()));
+		UserInfo userInfo = ShiroUtil.getUserInfo();
+		LogManager logManager = LogManager.me();
+		
+		logManager.executeLog(LogTaskFactory.loginLog(userInfo.getUserId(),HttpUtil.getIp()));
+		
 		request.getSession().setAttribute("userInfo", userInfo);
 		request.getSession().setAttribute("userName", userInfo.getAccount());
 		
@@ -51,7 +55,9 @@ public class LoginController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout() {
-		LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroUtil.getUserInfo().getUserId(),HttpUtil.getIp()));
+		UserInfo userInfo = ShiroUtil.getUserInfo();
+		
+		LogManager.me().executeLog(LogTaskFactory.exitLog(userInfo.getUserId(),HttpUtil.getIp()));
 		ShiroUtil.getSubject().logout();
 		return REDIRECT + "/login.jsp";
 	}

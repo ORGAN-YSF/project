@@ -17,11 +17,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-	@Value(value = "${redis.host}")
+	@Value("${redis.host}")
 	private String host;
-	@Value(value = "{redis.port}")
+	@Value("${redis.port}")
 	private Integer port;
-	@Value(value = "{redis.password}")
+	@Value("${redis.password}")
 	private String password;
 
 	@Bean

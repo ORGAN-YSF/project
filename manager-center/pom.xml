@@ -104,6 +104,14 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-pool2</artifactId>
+		</dependency>
+		<dependency>  
+        	<groupId>redis.clients</groupId>  
+        	<artifactId>jedis</artifactId>  
+    	</dependency>
 
 		<!-- spring boot -->
 		<dependency>
@@ -171,6 +179,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
+			<version>1.2.31</version>
 		</dependency>
 
 		<dependency>

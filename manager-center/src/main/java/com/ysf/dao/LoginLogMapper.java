@@ -1,7 +1,9 @@
 package com.ysf.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import com.ysf.po.LoginLog;
 
+@Mapper
 public interface LoginLogMapper {
     int deleteByPrimaryKey(Long id);
 

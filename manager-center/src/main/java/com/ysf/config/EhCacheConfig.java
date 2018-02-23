@@ -12,17 +12,11 @@ import net.sf.ehcache.CacheManager;
 @Configuration
 @EnableCaching
 public class EhCacheConfig {
-    /**
-     * EhCache的配置
-     */
     @Bean
     public EhCacheCacheManager cacheManager(CacheManager cacheManager) {
         return new EhCacheCacheManager(cacheManager);
     }
 
-    /**
-     * EhCache的配置
-     */
     @Bean
     public EhCacheManagerFactoryBean ehcache() {
         EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
