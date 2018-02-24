@@ -20,11 +20,15 @@ public class PermissionAop {
 
 	@Around("cutPermission()")
 	public Object doPermission(ProceedingJoinPoint point) throws Throwable {
+		//方法标志
 		MethodSignature msig = (MethodSignature) point.getSignature();
+		//获取切入的方法
 		Method method = msig.getMethod();
+		//获取方法上的注解
 		Permission annotation = method.getAnnotation(Permission.class);
+		//获取注解上的value值
 		Object[] permissions = annotation.value();
-
+		
 		if(permissions == null || permissions.length == 0) {
 			//检查全体角色
 			boolean result = PermissionCheckManager.checkAll();
